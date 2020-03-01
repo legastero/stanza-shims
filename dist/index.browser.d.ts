@@ -13,7 +13,7 @@ declare const nativeWS: {
     readonly CONNECTING: number;
     readonly OPEN: number;
 };
-declare const nativeRTCPeerConnection: any;
+declare const nativeRTCPeerConnection: RTCPeerConnection | undefined;
 export {
     createHash,
     Hash,
