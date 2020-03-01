@@ -34,9 +34,6 @@ export function randomBytes(size: number) {
     return nodeRandomBytes(size);
 }
 
-export {
-    fetch,
-    WebSocket,
-    Hash,
-    Hmac
-}
+const nativeRTCPeerConnection = undefined;
+
+export { fetch, Hash, Hmac, nativeRTCPeerConnection as RTCPeerConnection, WebSocket };

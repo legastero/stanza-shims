@@ -1,16 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = require("tslib");
-const createHash_1 = tslib_1.__importStar(require("./crypto/createHash"));
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+const tslib_1 = require('tslib');
+const createHash_1 = tslib_1.__importStar(require('./crypto/createHash'));
 exports.createHash = createHash_1.default;
 exports.Hash = createHash_1.Hash;
-const Hmac_1 = tslib_1.__importDefault(require("./crypto/Hmac"));
+const Hmac_1 = tslib_1.__importDefault(require('./crypto/Hmac'));
 exports.Hmac = Hmac_1.default;
 let root;
 if (typeof window !== 'undefined') {
     root = window;
-}
-else if (typeof global !== 'undefined') {
+} else if (typeof global !== 'undefined') {
     root = global;
 }
 function randomBytes(size) {
@@ -33,3 +32,5 @@ const nativeFetch = fetch;
 exports.fetch = nativeFetch;
 const nativeWS = WebSocket;
 exports.WebSocket = nativeWS;
+const nativeRTCPeerConnection = root.RTCPeerConnection;
+exports.RTCPeerConnection = nativeRTCPeerConnection;

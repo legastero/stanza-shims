@@ -27,10 +27,13 @@ export function createHmac(alg: string, key: string | Buffer): Hmac {
 const nativeFetch = fetch;
 const nativeWS = WebSocket;
 
+const nativeRTCPeerConnection = root.RTCPeerConnection;
+
 export {
-    nativeFetch as fetch,
-    nativeWS as WebSocket,
+    createHash,
     Hash,
     Hmac,
-    createHash
-}
+    nativeFetch as fetch,
+    nativeWS as WebSocket,
+    nativeRTCPeerConnection as RTCPeerConnection
+};

@@ -17,7 +17,6 @@ import { Transform } from 'readable-stream';
 
 import createHash, { Hash } from './createHash';
 
-
 const ZEROS = Buffer.alloc(128);
 
 export default class Hmac extends Transform {

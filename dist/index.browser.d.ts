@@ -13,4 +13,12 @@ declare const nativeWS: {
     readonly CONNECTING: number;
     readonly OPEN: number;
 };
-export { nativeFetch as fetch, nativeWS as WebSocket, Hash, Hmac, createHash };
+declare const nativeRTCPeerConnection: any;
+export {
+    createHash,
+    Hash,
+    Hmac,
+    nativeFetch as fetch,
+    nativeWS as WebSocket,
+    nativeRTCPeerConnection as RTCPeerConnection
+};
