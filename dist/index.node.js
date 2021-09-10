@@ -1,11 +1,11 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-const tslib_1 = require('tslib');
-const node_fetch_1 = tslib_1.__importDefault(require('node-fetch'));
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+const node_fetch_1 = tslib_1.__importDefault(require("node-fetch"));
 exports.fetch = node_fetch_1.default;
-const ws_1 = tslib_1.__importDefault(require('ws'));
+const ws_1 = tslib_1.__importDefault(require("ws"));
 exports.WebSocket = ws_1.default;
-const crypto_1 = require('crypto');
+const crypto_1 = require("crypto");
 exports.Hash = crypto_1.Hash;
 exports.Hmac = crypto_1.Hmac;
 const ianaNames = new Map([

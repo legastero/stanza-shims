@@ -23,7 +23,8 @@ class Hash extends Transform {
         let error = null;
         try {
             this.update(chunk, encoding);
-        } catch (err) {
+        }
+        catch (err) {
             error = err;
         }
         callback(error);
@@ -32,7 +33,8 @@ class Hash extends Transform {
         let error = null;
         try {
             this.push(this.digest());
-        } catch (err) {
+        }
+        catch (err) {
             error = err;
         }
         callback(error);
@@ -46,7 +48,7 @@ class Hash extends Transform {
         const blockSize = this._blockSize;
         const length = data.length;
         let accum = this._len;
-        for (let offset = 0; offset < length; ) {
+        for (let offset = 0; offset < length;) {
             const assigned = accum % blockSize;
             const remainder = Math.min(length - offset, blockSize - assigned);
             for (let i = 0; i < remainder; i++) {
@@ -76,17 +78,20 @@ class Hash extends Transform {
             if (this._bigEndian) {
                 this._block.writeUInt32BE(0, this._blockSize - 8);
                 this._block.writeUInt32BE(bits, this._blockSize - 4);
-            } else {
+            }
+            else {
                 this._block.writeUInt32LE(bits, this._blockSize - 8);
                 this._block.writeUInt32LE(0, this._blockSize - 4);
             }
-        } else {
+        }
+        else {
             const lowBits = (bits & 0xffffffff) >>> 0;
             const highBits = (bits - lowBits) / 0x100000000;
             if (this._bigEndian) {
                 this._block.writeUInt32BE(highBits, this._blockSize - 8);
                 this._block.writeUInt32BE(lowBits, this._blockSize - 4);
-            } else {
+            }
+            else {
                 this._block.writeUInt32LE(lowBits, this._blockSize - 8);
                 this._block.writeUInt32LE(highBits, this._blockSize - 4);
             }
@@ -822,7 +827,8 @@ function createHash(alg) {
     const HashImp = HASH_IMPLEMENTATIONS.get(alg);
     if (HashImp) {
         return new HashImp();
-    } else {
+    }
+    else {
         throw new Error('Unsupported hash algorithm: ' + alg);
     }
 }
@@ -852,7 +858,8 @@ class Hmac extends Transform {
             key = createHash(alg)
                 .update(key)
                 .digest();
-        } else if (key.length < blocksize) {
+        }
+        else if (key.length < blocksize) {
             key = Buffer.concat([key, ZEROS], blocksize);
         }
         this._ipad = Buffer.alloc(blocksize);
@@ -867,9 +874,11 @@ class Hmac extends Transform {
         let err;
         try {
             this.update(data, enc);
-        } catch (e) {
+        }
+        catch (e) {
             err = e;
-        } finally {
+        }
+        finally {
             next(err);
         }
     }
@@ -877,7 +886,8 @@ class Hmac extends Transform {
         let err;
         try {
             this.push(this._final());
-        } catch (e) {
+        }
+        catch (e) {
             err = e;
         }
         done(err);
@@ -905,7 +915,8 @@ class Hmac extends Transform {
 let root;
 if (typeof window !== 'undefined') {
     root = window;
-} else if (typeof global !== 'undefined') {
+}
+else if (typeof global !== 'undefined') {
     root = global;
 }
 function randomBytes(size) {
@@ -921,18 +932,8 @@ function getHashes() {
 function createHmac(alg, key) {
     return new Hmac(alg.toLowerCase(), key);
 }
-const nativeFetch = fetch;
+const nativeFetch = fetch.bind(window);
 const nativeWS = WebSocket;
 const nativeRTCPeerConnection = root.RTCPeerConnection;
 
-export {
-    Hash,
-    Hmac,
-    nativeRTCPeerConnection as RTCPeerConnection,
-    nativeWS as WebSocket,
-    createHash,
-    createHmac,
-    nativeFetch as fetch,
-    getHashes,
-    randomBytes
-};
+export { Hash, Hmac, nativeRTCPeerConnection as RTCPeerConnection, nativeWS as WebSocket, createHash, createHmac, nativeFetch as fetch, getHashes, randomBytes };
