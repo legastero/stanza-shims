@@ -1,7 +1,7 @@
 {
   "name": "stanza-shims",
   "description": "Runtime shims used by StanzaJS for node, browsers, and React Native",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Lance Stout <lancestout@gmail.com>",
   "browser": "./dist/index.browser-module.js",
   "bugs": "https://github.com/legastero/stanza/issues",
