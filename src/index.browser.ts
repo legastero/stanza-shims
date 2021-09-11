@@ -24,7 +24,7 @@ export function createHmac(alg: string, key: string | Buffer): Hmac {
     return new Hmac(alg.toLowerCase(), key);
 }
 
-const nativeFetch = fetch;
+const nativeFetch = fetch.bind(window);
 const nativeWS = WebSocket;
 
 const nativeRTCPeerConnection: RTCPeerConnection | undefined = root.RTCPeerConnection;
