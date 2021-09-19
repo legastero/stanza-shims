@@ -10,6 +10,9 @@ let root;
 if (typeof window !== 'undefined') {
     root = window;
 }
+else if (typeof self !== 'undefined') {
+    root = self;
+}
 else if (typeof global !== 'undefined') {
     root = global;
 }
@@ -29,7 +32,7 @@ function createHmac(alg, key) {
     return new Hmac_1.default(alg.toLowerCase(), key);
 }
 exports.createHmac = createHmac;
-const nativeFetch = fetch.bind(window);
+const nativeFetch = fetch.bind(root);
 exports.fetch = nativeFetch;
 const nativeWS = WebSocket;
 exports.WebSocket = nativeWS;

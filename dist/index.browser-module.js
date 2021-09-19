@@ -916,6 +916,9 @@ let root;
 if (typeof window !== 'undefined') {
     root = window;
 }
+else if (typeof self !== 'undefined') {
+    root = self;
+}
 else if (typeof global !== 'undefined') {
     root = global;
 }
@@ -932,7 +935,7 @@ function getHashes() {
 function createHmac(alg, key) {
     return new Hmac(alg.toLowerCase(), key);
 }
-const nativeFetch = fetch.bind(window);
+const nativeFetch = fetch.bind(root);
 const nativeWS = WebSocket;
 const nativeRTCPeerConnection = root.RTCPeerConnection;
 
