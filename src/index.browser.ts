@@ -4,6 +4,8 @@ import Hmac from './crypto/Hmac';
 let root: any;
 if (typeof window !== 'undefined') {
     root = window;
+} else if (typeof self !== 'undefined') {
+    root = self;
 } else if (typeof global !== 'undefined') {
     root = global;
 }
@@ -24,7 +26,7 @@ export function createHmac(alg: string, key: string | Buffer): Hmac {
     return new Hmac(alg.toLowerCase(), key);
 }
 
-const nativeFetch = fetch.bind(window);
+const nativeFetch = fetch.bind(root);
 const nativeWS = WebSocket;
 
 const nativeRTCPeerConnection: RTCPeerConnection | undefined = root.RTCPeerConnection;
